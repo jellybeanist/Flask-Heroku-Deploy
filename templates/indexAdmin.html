@@ -1,0 +1,268 @@
+<style>body{
+        background-color: #DDECEE;
+        font-family: Arial;
+        font-size: 14px;
+        font-weight: inherit;
+        line-height: inherit;
+    }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  background-color: #f3f3f3;
+}
+
+li {
+  float: left;
+  border-right:1px solid #bbb;
+}
+
+li:last-child {
+  border-right: none;
+}
+
+li a {
+  display: block;
+  color: #666;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: green;
+}
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+    li a, .dropbtn {
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+body, html {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.content {
+    margin: 0 auto;
+    width: 400px;
+}
+
+table, td, th {
+    padding: 7.5px;
+    border: 1px solid #aaa;
+    font-size: 12px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 25%;
+
+
+}
+
+th {
+    height: 30px;
+}
+
+td {
+    text-align: center;
+    padding: 5px;
+}
+
+.form {
+    margin-top: 20px;
+  
+}
+
+
+#content {
+    width: 70%;
+}
+body {
+  font-family: Arial;
+}
+* {
+  box-sizing: border-box;
+}
+form.example input[type=text] {
+  padding: 4px;
+  font-size: 12px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer
+
+}
+form.example button:hover {
+  background: #0b7dda;
+}
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+</style>
+{% block head %}
+<title>SE 560 Project</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+  <br>
+  
+    <h1 style="text-align: center;font-size: 34px;color:#35363b;font-weight: 300;">Admin View</h1>
+
+
+    <div style="position: absolute; left:50px; top: 50px;">
+        <br>
+    <h2 style="text-align: center;color:#055e79">Create Medicines</h2>
+    <hr width="300"|%>
+    
+    
+
+     <div style="text-align: left; overflow-x:auto;" class="form">
+         <form enctype=multipart/form-data action="/admin" method="POST">
+            <th>Medicine Name</th>
+            <input style="position: absolute; right:15px" type="text" name="medicine_name" id="medicine_name"> <br><br>
+            <th>Manufacturer</th>
+            <input style="position: absolute; right:15px" type="text" name="manufacturer" id="manufacturer">  <br><br>
+            <th>Category</th> 
+            <input style="position: absolute; right:15px" type="text" name="category" id="category">  <br><br>
+            <th>Active Ingredient</th>
+            <input style="position: absolute; right:15px" type="text" name="active_ingredient" id="active_ingredient">  <br><br>
+            <th>Extra Dosage Info</th>
+            <input style="position: absolute; right:15px" type="text" name="extra_dosage_info" id="extra_dosage_info">  <br><br>
+            <th>Dosage Info(Optional)</th>
+            <input style="position: absolute; right:15px" type="text" name="dosage_info" id="dosage_info">  <br><br>
+            <br>
+            <input style="position: absolute; left:80px;font-size: 18px;font-weight: 500;letter-spacing: 0.005em;" type="Submit" value="Create Medicine">
+        </form>
+ 
+    </div>
+
+
+
+
+
+    </div>
+
+
+    {% if medicines|length < 1 %}
+    <h4 style="text-align: center">There are no medicines. </h4>
+    {% else %}
+    <h2 style="text-align: center;color:#055e79">Medicines</h2>
+    <hr>
+    <br>
+
+    <table style="height: 10px;  border:2px;overflow-x:auto; position: absolute; top:160px left:100px;font-size: 14px;margin-left: -50px;border-left-width: 1px;border-left-style: solid;border-bottom-width: 1px;border-bottom-style: solid;border-right-width: 1px;border-right-style: solid;border-top-width: 1px;border-top-style: solid;">
+        <tr>
+            <th>Medicine Name</th>
+            <th>Manufacturer</th>
+            <th>Category</th>
+            <th>Active Ingredient</th>
+            <th>Extra Dosage Info</th>
+            <th>Dosage Info</th>
+            <th>Actions</th>
+        </tr>
+        {% for medicine in medicines %}
+            <tr>
+                <td>{{ medicine.medicine_name }}</td>
+                <td>{{ medicine.manufacturer }}</td>
+                <td>{{ medicine.category }}</td>
+                <td>{{ medicine.active_ingredient }}</td>
+                <td>{{ medicine.extra_dosage_info }}</td>
+                <td>{{ medicine.dosage_info }}</td>
+
+                <td>
+                    <a href="/delete/{{medicine._id}}">Delete</a>
+                    <br>
+                    <a href="/update/{{medicine._id}}">Edit</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% endif %}
+    </div>
+    <div style="position: absolute; right:55px; top: 50px;">
+    <br>
+    <h2 style="text-align: center;color:#055e79">Search Medicines</h2>
+    <hr width="200"|%>
+    
+    
+
+     <div style="text-align: center;" class="form">
+        <form  action="/searchAdmin" method="POST">
+                <div style="text-align: center;">
+        <input type="checkbox"  onclick="return false" name="searchBox" hidden="true" default= "0" id="name"  value="1" checked> Medicine Name </input>
+
+        <br> <br>
+    
+    </div>
+            <input type="text" placeholder = "Type something" name="search" id="search">
+            <input  type="Submit" value="search">
+        </form>
+    </div>
+</div>
+    <br>
+    <br>
+
+   
+
+</div>
+</div>
+
+
+{% endblock %}

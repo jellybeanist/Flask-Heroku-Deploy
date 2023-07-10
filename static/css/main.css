@@ -1,0 +1,146 @@
+body {
+   transform: scale(1.0);
+   transform-origin: 0 0;
+ }
+ul {
+"margin-left: -20px;margin-bottom: -20px;margin-top: -10px;width: 1424.64px;height: 43.3334px;"
+}
+
+li {
+border-right-width: 0px;
+}
+
+li:last-child {
+  border-right: none;
+}
+
+li a {
+  display: block;
+  color: #666;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: green;
+}
+li.dropdown {
+  display: inline-block;
+}
+li.input {
+  margin-left:15px;height:40px; width:100px; border-right: 15px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+    li a, .dropbtn {
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+body, html {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.content {
+    margin: 0 auto;
+    width: 400px;
+}
+
+table, td, th {
+    padding: 7.5px;
+    border: 1px solid #aaa;
+    font-size: 12px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 25%;
+
+
+}
+
+th {
+    height: 30px;
+}
+
+td {
+    text-align: center;
+    padding: 5px;
+}
+
+.form {
+    margin-top: 20px;
+  
+}
+
+
+#content {
+    width: 70%;
+}
+body {
+  font-family: Arial;
+}
+* {
+  box-sizing: border-box;
+}
+form.example input[type=text] {
+  padding: 4px;
+  font-size: 12px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer
+
+}
+form.example button:hover {
+  background: #0b7dda;
+}
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}

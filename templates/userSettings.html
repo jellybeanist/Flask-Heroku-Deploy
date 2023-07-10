@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Receipt Tracker</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <div style="position: absolute; left:50px; top: 50px;">
+        <br>
+    <h2 style="text-align: center;color:#055e79">User Settings</h2>
+    <hr width="300"|%>
+    <div style="text-align: left;" class="form">
+        <form action="/updateUser/{{user._id}}" method="POST" >
+            <th>Name</th>
+            <input style="position: absolute; right:-10px" type="text" name="name" id="name" placeholder="{{user.name}}"> <br><br>
+            <th>Address</th>
+            <input style="position: absolute; right:-10px" type="text" name="address" id="address" placeholder="{{user.address}}"> <br><br>
+            <th>Email</th> 
+            <input style="position: absolute; right:-10px" type="text" name="email" id="email" placeholder="{{user.email}}">  <br><br>
+            <th>Phone</th> 
+            <input style="position: absolute; right:-10px" type="text" name="phone" id="phone" placeholder="{{user.phone}}">  <br><br>
+
+            <br>
+            <input style="font-size: 16px;font-weight: 400;letter-spacing: 0.005em;margin-left: 100px;" type="Submit" value="Finish">
+            
+
+            
+        </form>
+ 
+ 
+    </div>
+
+    
+
+    </div>
+</div>
+{% endblock %}

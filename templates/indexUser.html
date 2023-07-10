@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>SE 560 Project</title>
+{% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+
+<div class="content"> 
+    
+
+
+    <br>
+    <br>
+
+    <h2 style="position: absolute; left:0px; top: 75px;text-align: center;color:#055e79; margin-left: 110px; margin-right: 100px;">Shopping Cart</h2>
+
+        <div style="position: absolute; left:0px; top: 50px;" >
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <hr style = "margin-left: 50px" width="300"|%>
+    {% if medicinesCart|length > 0 %}
+    <table style="height: 10px; top:160px ;margin-left: 36px;font-size: 14px;">
+        <br>
+        <tr>
+            <th>Medicine Name</th>
+            <th>Manufacturer</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Actions</th>
+        </tr>
+        {% for medicine in medicinesCart %}
+            <tr>
+                <td>{{ medicine.medicine_name }}</td>
+                <td>{{ medicine.manufacturer }}</td>
+                <td>{{ medicine.category }}</td>
+                <td>{{ medicine.curAmount }}</td>
+                <td>
+                    <a href="/{{user._id}}/remove/{{medicine._id}}">Remove</a>
+
+                    
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+     <form  action="/{{user._id}}/order" method="GET">
+     <input  style="font-size: 16px;font-weight: 400;letter-spacing: 0.005em;margin-left: 120px;" type="Submit" value="Complete Order">
+ </form>
+    {% endif %}
+
+    
+
+    </div>
+
+
+    {% if medicines|length < 1 %}
+    <h4 style="text-align: center">There are no medicines.</h4>
+    {% else %}
+    <h2 style="text-align: center;color:#055e79">Medicines</h2>
+    <hr>
+    <br>
+
+    <table style="height: 10px;  position: absolute; top:100px left:100px;margin-left: -50px;font-size: 14px;">
+        <tr>
+            <th>Medicine Name</th>
+            <th>Manufacturer</th>
+            <th>Category</th>
+            <th>Active Ingredient</th>
+            <th>Extra Dosage Info</th>
+            <th>Dosage Info</th>
+            <th>Actions</th>
+        </tr>
+        {% for medicine in medicines %}
+            <tr>
+                <td>{{ medicine.medicine_name }}</td>
+                <td>{{ medicine.manufacturer }}</td>
+                <td>{{ medicine.category }}</td>
+                <td>{{ medicine.active_ingredient }}</td>
+                <td>{{ medicine.extra_dosage_info }}</td>
+                <td>{{ medicine.dosage_info }}</td>
+
+                <td>
+                    <a href="/{{user._id}}/add/{{medicine._id}}">Add to cart</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% endif %}
+    </div>
+    <div style="position: absolute; right:80px; top: 50px;">
+    <br>
+    <h2 style="text-align: center;color:#055e79">Search Medicines</h2>
+    <hr width="200"|%>
+    
+    
+
+     <div style="text-align: center;" class="form">
+        <form  action="/{{user._id}}/search" method="POST">
+                <div style="text-align: center;">
+        <input type="checkbox"  onclick="return false" name="searchBox" hidden="true" default= "0" id="name"  value="1" checked> Medicine Name </input>
+    <br> <br>
+    
+    </div>
+            <input type="text" placeholder = "Type something" name="search" id="search">
+            <input  type="Submit" value="search">
+        </form>
+    </div>
+</div>
+    <br>
+    <br>
+
+   
+
+</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>SE 560 Project</title>
+{% endblock %}
+
+{% block body %}
+
+
+    
+<div class="content">
+    
+    <br>
+    <br>
+    <br>
+
+    {% if done == 0 %}
+    <div style="position: absolute; left:50px; top: 50px;">
+        <br>
+    <h2 style="text-align: center;color:#055e79">Order Info</h2>
+    <hr width="300"|%>
+    <div style="text-align: left;" class="form">
+        <form action="/{{user._id}}/order" method="POST" >
+            <th>Name</th>
+            <input style="position: absolute; right:-10px" type="text" name="name" id="name" placeholder="{{user.name}}" readonly> <br><br>
+            <th>Address</th>
+            <input style="position: absolute; right:-10px" type="text" name="address" id="address" > <br><br>
+            <th>Email</th> 
+            <input style="position: absolute; right:-10px" type="text" name="email" id="email" placeholder="{{user.e_mail}}" readonly>  <br><br>
+
+
+            <br>
+            <br>
+            
+            <input style="font-size: 16px;font-weight: 400;letter-spacing: 0.005em;margin-left: 160px;" type="Submit" value="Finish">
+            
+            
+            
+        </form>
+ 
+    </div>
+    {% endif %}
+
+    {% if done == 1 %}
+    <div style="position: absolute; left:50px; top: 50px;">
+        <br>
+    <h2 style="text-align: center;color:#055e79">Order Info</h2>
+    <hr width="300"|%>
+    <div style="text-align: left;" class="form">
+        <form action="/{{user._id}}/order" method="POST" >
+            <th>Name</th>
+            <input style="position: absolute; right:-10px" type="text" name="name" id="name" placeholder="{{user.name}}" readonly> <br><br>
+            <th>Address</th>
+            <input style="position: absolute; right:-10px" type="text" name="address" id="address" placeholder="{{user.address}}" readonly> <br><br>
+            <th>Email</th> 
+            <input style="position: absolute; right:-10px" type="text" name="email" id="email" placeholder="{{user.e_mail}}" readonly>  <br><br>
+
+            <br>
+            <br>
+
+  
+            
+            
+            
+        </form>
+ 
+    </div>
+
+    {% endif %}
+    
+
+    </div>
+
+    <div>
+    {% if medicines|length < 1 %}
+    <h4 style="text-align: center">There are no medicines.</h4>
+    {% else %}
+    <h2 style="text-align: center;color:#055e79">Selected Medicines</h2>
+    <hr>
+    <br>
+
+    <table style="height: 10px;  position: absolute; top:160px left:50px;margin-left: 10px;font-size: 14px;">
+        <tr>
+            <th>Medicine Name</th>
+            <th>Manufacturer</th>
+            <th>Category</th>
+            <th>Amount</th>
+            
+        </tr>
+        {% for medicine in medicines %}
+            <tr>
+                <td>{{ medicine.medicine_name }}</td>
+                <td>{{ medicine.manufacturer }}</td>
+                <td>{{ medicine.category }}</td>
+                <td>{{ medicine.curAmount }}</td>
+
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% endif %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <br>
+    <br>
+
+</div>
+
+    {% if done == 1 %}
+     <div style="position: absolute; right:120px; top: 50px;">
+    <br>
+    <h2 style="text-align: center;color:#055e79">Order Complete!</h2>
+    <hr width="200"|%>
+    <br>
+    <br>
+    Your order has been added to orders list.
+    <br>
+    <br>
+    <form action="/{{user._id}}/" method="GET" >
+    <input style="font-size: 16px;font-weight: 400;letter-spacing: 0.005em;margin-left: 120px;" type="Submit" value="Back">
+    </form>
+    </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}
