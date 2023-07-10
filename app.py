@@ -11,9 +11,14 @@ import pymongo
 import ssl
 
 PATH = os.getcwd()
-
+UPLOAD_FOLDER = "/uploads"
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 cluster = pymongo.MongoClient("mongodb+srv://e2649655:se560@cluster0.x3gv569.mongodb.net/?retryWrites=true&w=majority",
                               ssl_cert_reqs=ssl.CERT_NONE)
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 db = cluster["demo2"]
 user_collection = db["Users"]
