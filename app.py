@@ -1,5 +1,4 @@
 from bson import ObjectId
-import json
 from flask import Flask, render_template, url_for, request, redirect, flash
 from datetime import datetime
 from werkzeug.utils import secure_filename
@@ -14,12 +13,9 @@ import ssl
 PATH = os.getcwd()
 UPLOAD_FOLDER = "/uploads"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+
 cluster = pymongo.MongoClient("mongodb+srv://e2649655:se560@cluster0.x3gv569.mongodb.net/?retryWrites=true&w=majority",
                               ssl_cert_reqs=ssl.CERT_NONE)
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 db = cluster["demo2"]
 user_collection = db["Users"]
@@ -27,6 +23,11 @@ medicine_collection = db["Medicines"]
 order_collection = db["Orders"]
 
 app = Flask(__name__)
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 class Medicine:
@@ -179,9 +180,16 @@ def add(user_id, medicine_id):
     user = user_collection.find_one({"_id": ObjectId(user_id)})
     medicine = medicine_collection.find_one({"_id": ObjectId(medicine_id)})
 
-    medicine_to_add = Medicine(medicine["medicine_name"], medicine["manufacturer"], medicine["category"],
-                               medicine["active_ingredient"],
-                               medicine["extra_dosage_info"], medicine["dosage_info"], medicine["_id"])
+    if medicine["extra_dosage_info"] == "yes":
+        medicine_to_add = Medicine(medicine["medicine_name"], medicine["manufacturer"],
+                                   medicine["category"], medicine["active_ingredient"],
+                                   medicine["extra_dosage_info"], medicine["dosage_info"], medicine["_id"])
+
+    else:
+        medicine_to_add = Medicine(medicine["medicine_name"], medicine["manufacturer"],
+                                   medicine["category"], medicine["active_ingredient"],
+                                   medicine["extra_dosage_info"], "", medicine["_id"])
+
     cart = carts[user["_id"]]
     control = 1
 
