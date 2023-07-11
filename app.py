@@ -509,5 +509,4 @@ if __name__ == "app":
         username = user["_id"]
         carts[username] = []
 
-    app.run(debug=True)
 
