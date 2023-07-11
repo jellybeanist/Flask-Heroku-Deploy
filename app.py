@@ -499,3 +499,15 @@ if __name__ == "__main__":
         carts[username] = []
 
     app.run(debug=True)
+
+if __name__ == "app":
+
+    users = user_collection.find()
+    carts = {}
+
+    for user in users:
+        username = user["_id"]
+        carts[username] = []
+
+    app.run(debug=True)
+
